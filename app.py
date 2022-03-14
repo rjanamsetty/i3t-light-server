@@ -1,6 +1,7 @@
 from flask import Flask, request
 import lifx
 
+
 app = Flask(__name__)
 
 
