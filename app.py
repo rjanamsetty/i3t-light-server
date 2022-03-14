@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 import lifx
 
 app = Flask(__name__)
@@ -31,6 +31,19 @@ def off():
         return 'Bad Gateway', 502
 
 
+@app.route('/brightness', methods=['POST'])
+def brightness():
+    try:
+        value = request.args.get('value', default=1, type=int)
+        if value < 0 or value > 65535:
+            return 'Invalid Brightness', 400
+        else:
+            lifx.set_brightness(value)
+            return 'ok', 200
+    except:
+        return 'Bad Gateway', 502
+
+
 @app.route('/')
 def get_power():
     try:
@@ -40,4 +53,4 @@ def get_power():
 
 
 if __name__ == '__main__':
-    app.run(host="192.168.1.9")
+    app.run()

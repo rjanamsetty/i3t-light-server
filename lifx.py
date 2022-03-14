@@ -2,6 +2,7 @@ from lifxlan import LifxLAN
 
 lifx = LifxLAN(1)
 
+
 def on():
     """
     Turns on all lights
@@ -17,6 +18,7 @@ def off():
     """
     lifx.set_power_all_lights("off", rapid=True)
 
+
 def power_state():
     """
     Gets the new state of the first light in the LifxLAN object
@@ -24,6 +26,17 @@ def power_state():
     """
     devices = lifx.get_lights()
     return 'off' if devices[0].get_power() == 0 else "on"
+
+
+def set_brightness(brightness):
+    """
+    Sets the brightness of all lights to the given value
+    :param brightness: the brightness value to set
+    :return: None
+    """
+    devices = lifx.get_lights()
+    for device in devices:
+        device.set_brightness(brightness, rapid=True)
 
 
 # Toggles power state of all lights based on current state of the first light
@@ -35,6 +48,7 @@ def toggle():
     new_state = power_state()
     on() if power_state() == 'off' else off()
     return new_state
+
 
 if __name__ == "__main__":
     toggle()
