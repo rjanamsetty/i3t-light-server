@@ -2,29 +2,39 @@ from lifxlan import LifxLAN
 
 lifx = LifxLAN(1)
 
-
-# Turns on all lights
 def on():
+    """
+    Turns on all lights
+    :return: None
+    """
     lifx.set_power_all_lights("on", rapid=True)
 
 
-# Turns off all lights
 def off():
+    """
+    Turns off all lights
+    :return: None
+    """
     lifx.set_power_all_lights("off", rapid=True)
 
-
-# Returns the power state of the first light obtained from the LifxLAN object
 def power_state():
+    """
+    Gets the new state of the first light in the LifxLAN object
+    :return: the new power state of the first light as a string
+    """
     devices = lifx.get_lights()
     return 'off' if devices[0].get_power() == 0 else "on"
 
 
 # Toggles power state of all lights based on current state of the first light
 def toggle():
+    """
+    Toggles power state of all lights based on current state of the first light
+    :return: the new, changed power state of the first light as a string
+    """
     new_state = power_state()
     on() if power_state() == 'off' else off()
     return new_state
-
 
 if __name__ == "__main__":
     toggle()
