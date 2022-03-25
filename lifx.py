@@ -51,4 +51,4 @@ def toggle():
 
 
 if __name__ == "__main__":
-    toggle()
+    set_brightness(2500)

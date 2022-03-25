@@ -35,7 +35,7 @@ def off():
 @app.route('/brightness', methods=['POST'])
 def brightness():
     try:
-        value = request.args.get('value', default=1, type=int)
+        value = request.args.get('value', default=0, type=int)
         if value < 0 or value > 65535:
             return 'Invalid Brightness', 400
         else:
