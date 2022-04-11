@@ -15,7 +15,7 @@ def get_lux():
         luxsum = 0
         iterations = 5
         for _ in range(iterations):
-            luxsum += sensor.TSL2591_SET_LuxInterrupt(50, 200)
+            luxsum += sensor.Lux
         return luxsum / iterations
     except KeyboardInterrupt:
         sensor.Disable()
