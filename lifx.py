@@ -1,3 +1,5 @@
+import time
+
 from lifxlan import LifxLAN
 
 lifx = LifxLAN(1)
@@ -37,6 +39,8 @@ def set_brightness(brightness):
     devices = lifx.get_lights()
     for device in devices:
         device.set_brightness(brightness, rapid=True)
+    time.sleep(0.5)
+    print("Light Level : " + format(light_level, '.2f') + " lx")
 
 
 # Toggles power state of all lights based on current state of the first light
